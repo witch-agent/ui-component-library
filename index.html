@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Component Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0a;
+            --bg-secondary: #111111;
+            --text: #f0f0f0;
+            --text-muted: #888888;
+            --accent: #ff6b6b;
+            --accent-2: #4ecdc4;
+            --accent-3: #ffe66d;
+            --border: #222222;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        h1 span:nth-child(1) { color: var(--accent); }
+        h1 span:nth-child(2) { color: var(--accent-2); }
+        h1 span:nth-child(3) { color: var(--accent-3); }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .component-section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+        }
+
+        .component-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent-2);
+        }
+
+        .component-preview {
+            padding: 2rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .component-code {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        .component-code pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--accent-2);
+            color: var(--accent-2);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-2);
+            color: var(--bg);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* CARDS */
+        .card {
+            width: 280px;
+            padding: 1.5rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .card-glass {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .card-gradient {
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        }
+
+        /* INPUTS */
+        .input {
+            padding: 0.75rem 1rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            width: 250px;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: var(--accent-2);
+        }
+
+        /* TAGS */
+        .tag {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tag-primary {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--accent);
+        }
+
+        .tag-secondary {
+            background: rgba(78, 205, 196, 0.2);
+            color: var(--accent-2);
+        }
+
+        .tag-dark {
+            background: rgba(255,255,255,0.1);
+            color: var(--text);
+        }
+
+        /* BADGES */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background: rgba(0, 255, 136, 0.2);
+            color: #00ff88;
+        }
+
+        .badge-warning {
+            background: rgba(255, 230, 109, 0.2);
+            color: var(--accent-3);
+        }
+
+        .badge-error {
+            background: rgba(255, 107, 107, 0.2);
+            color: var(--accent);
+        }
+
+        /* AVATARS */
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: var(--bg);
+        }
+
+        .avatar-group {
+            display: flex;
+        }
+
+        .avatar-group .avatar {
+            margin-left: -12px;
+            border: 2px solid var(--bg);
+        }
+
+        .avatar-group .avatar:first-child {
+            margin-left: 0;
+        }
+
+        /* PROGRESS */
+        .progress {
+            width: 200px;
+            height: 8px;
+            background: var(--border);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2));
+            border-radius: 100px;
+        }
+
+        /* TOOLTIP */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            background: var(--text);
+            color: var(--bg);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span>UI</span> <span>Component</span> <span>Library</span></h1>
+            <p class="subtitle">Reusable components for your next project</p>
+        </header>
+
+        <!-- Buttons -->
+        <div class="component-section">
+            <h2 class="component-title">Buttons</h2>
+            <div class="component-preview">
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-ghost">Ghost</button>
+            </div>
+            <div class="component-code">
+                <pre>&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+&lt;button class="btn btn-ghost"&gt;Ghost&lt;/button&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="component-section">
+            <h2 class="component-title">Cards</h2>
+            <div class="component-preview">
+                <div class="card">
+                    <h3 style="margin-bottom: 0.5rem;">Basic Card</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Simple card component</p>
+                </div>
+                <div class="card card-glass">
+                    <h3 style="margin-bottom: 0.5rem;">Glass Card</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">With backdrop blur</p>
+                </div>
+            </div>
+            <div class="component-code">
+                <pre>&lt;div class="card"&gt;...&lt;/div&gt;
+&lt;div class="card card-glass"&gt;...&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Inputs -->
+        <div class="component-section">
+            <h2 class="component-title">Inputs</h2>
+            <div class="component-preview">
+                <input type="text" class="input" placeholder="Type something...">
+            </div>
+            <div class="component-code">
+                <pre>&lt;input type="text" class="input" placeholder="Type..."&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="component-section">
+            <h2 class="component-title">Tags</h2>
+            <div class="component-preview">
+                <span class="tag tag-primary">Primary</span>
+                <span class="tag tag-secondary">Secondary</span>
+                <span class="tag tag-dark">Dark</span>
+            </div>
+            <div class="component-code">
+                <pre>&lt;span class="tag tag-primary"&gt;Primary&lt;/span&gt;
+&lt;span class="tag tag-secondary"&gt;Secondary&lt;/span&gt;
+&lt;span class="tag tag-dark"&gt;Dark&lt;/span&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Badges -->
+        <div class="component-section">
+            <h2 class="component-title">Badges</h2>
+            <div class="component-preview">
+                <span class="badge badge-success">Success</span>
+                <span class="badge badge-warning">Warning</span>
+                <span class="badge badge-error">Error</span>
+            </div>
+            <div class="component-code">
+                <pre>&lt;span class="badge badge-success"&gt;Success&lt;/span&gt;
+&lt;span class="badge badge-warning"&gt;Warning&lt;/span&gt;
+&lt;span class="badge badge-error"&gt;Error&lt;/span&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Avatars -->
+        <div class="component-section">
+            <h2 class="component-title">Avatars</h2>
+            <div class="component-preview">
+                <div class="avatar">JD</div>
+                <div class="avatar-group">
+                    <div class="avatar">A</div>
+                    <div class="avatar">B</div>
+                    <div class="avatar">C</div>
+                </div>
+            </div>
+            <div class="component-code">
+                <pre>&lt;div class="avatar"&gt;JD&lt;/div&gt;
+&lt;div class="avatar-group"&gt;
+  &lt;div class="avatar"&gt;A&lt;/div&gt;
+  &lt;div class="avatar"&gt;B&lt;/div&gt;
+  &lt;div class="avatar"&gt;C&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="component-section">
+            <h2 class="component-title">Progress Bar</h2>
+            <div class="component-preview">
+                <div class="progress">
+                    <div class="progress-bar" style="width: 75%;"></div>
+                </div>
+            </div>
+            <div class="component-code">
+                <pre>&lt;div class="progress"&gt;
+  &lt;div class="progress-bar" style="width: 75%;"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <!-- Tooltip -->
+        <div class="component-section">
+            <h2 class="component-title">Tooltip</h2>
+            <div class="component-preview">
+                <div class="tooltip">
+                    <button class="btn btn-primary">Hover Me</button>
+                    <span class="tooltip-text">This is a tooltip!</span>
+                </div>
+            </div>
+            <div class="component-code">
+                <pre>&lt;div class="tooltip"&gt;
+  &lt;button&gt;Hover Me&lt;/button&gt;
+  &lt;span class="tooltip-text"&gt;Tooltip text&lt;/span&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <footer>
+            <p>Built by witch-agent | Copy and use freely</p>
+        </footer>
+    </div>
+</body>
+</html>
